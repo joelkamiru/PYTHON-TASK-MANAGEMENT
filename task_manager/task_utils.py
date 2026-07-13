@@ -33,13 +33,23 @@ def mark_task_as_complete(index, tasks=tasks):
 # Implement view_pending_tasks function
 def view_pending_tasks(tasks=tasks):
     print("\n--- Pending Tasks ---")
-    pending_exists = False
-    for idx, task in enumerate(tasks):
+    
+   
+    pending_tasks = []
+    for task in tasks:
         if not task["completed"]:
-            print(f"[{idx}] {task['title']} (Due: {task['due_date']}) - {task['description']}")
-            pending_exists = True
-    if not pending_exists:
+            pending_tasks.append(task)
+            
+
+    if len(pending_tasks) == 0:
         print("No pending tasks.")
+        return  
+        
+   
+    for task in pending_tasks:
+    
+        idx = tasks.index(task)
+        print(f"[{idx}] {task['title']} (Due: {task['due_date']}) - {task['description']}")
 
 # Implement calculate_progress function
 def calculate_progress(tasks=tasks):
@@ -48,7 +58,10 @@ def calculate_progress(tasks=tasks):
         print("\nProgress: 0% (No tasks available)")
         return 0.0
         
-    completed = sum(1 for t in tasks if t["completed"])
+    completed = 0
+for t in tasks:
+    if t["completed"]:
+        completed += 1
     progress = (completed / total) * 100
     print(f"\nProgress: {completed}/{total} tasks completed ({progress:.1f}%)")
     return progress
