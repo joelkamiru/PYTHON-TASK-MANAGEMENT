@@ -22,40 +22,23 @@ def add_task(title, description, due_date):
 def mark_task_as_complete(index, tasks=tasks):
     try:
         idx = int(index)
-        if 0 <= idx < len(tasks) and not tasks[idx]["completed"]:
+        if 0 <= idx < len(tasks):
             tasks[idx]["completed"] = True
             print("Task marked as complete!")
-        else:
-            print("Error: Invalid index or task already completed.")
     except ValueError:
-        print("Error: Please enter a valid numerical index.")
+        pass
     
 # Implement view_pending_tasks function
 def view_pending_tasks(tasks=tasks):
-    print("\n--- Pending Tasks ---")
-    
-   
-    pending_tasks = []
-    for task in tasks:
+  for idx, task in enumerate(tasks):
         if not task["completed"]:
-            pending_tasks.append(task)
-            
-
-    if len(pending_tasks) == 0:
-        print("No pending tasks.")
-        return  
-        
-   
-    for task in pending_tasks:
-    
-        idx = tasks.index(task)
-        print(f"[{idx}] {task['title']} (Due: {task['due_date']}) - {task['description']}")
+            print(f"[{idx}] {task['title']} - {task['description']} (Due: {task['due_date']})")
 
 # Implement calculate_progress function
 def calculate_progress(tasks=tasks):
     total = len(tasks)
     if total == 0:
-        print("\nProgress: 0% (No tasks available)")
+    
         return 0.0
         
     completed = 0
@@ -63,5 +46,5 @@ def calculate_progress(tasks=tasks):
         if t["completed"]:
             completed += 1
     progress = (completed / total) * 100
-    print(f"\nProgress: {completed}/{total} tasks completed ({progress:.1f}%)")
+   
     return progress
