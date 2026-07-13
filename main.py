@@ -14,8 +14,8 @@ def main():
 
         if choice == "1":
             title = input("Enter title: ")
-            desc = input("Enter description: ")
-            date = input("Enter due date (YYYY-MM-DD): ")
+            description = input("Enter description: ")
+            due_date = input("Enter due date (YYYY-MM-DD): ")
             task_utils.add_task(title, description, due_date)
 
         elif choice == "2":
