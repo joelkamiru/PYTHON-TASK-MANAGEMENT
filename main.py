@@ -20,7 +20,6 @@ def main():
 
         elif choice == "2":
             
-            task_utils.view_pending_tasks()
             index = input("Enter task index to complete: ")
             task_utils.mark_task_as_complete(index)   
 
